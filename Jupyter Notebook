@@ -1,0 +1,33 @@
+import yfinance as yf
+import pandas as pd
+import requests
+from bs4 import BeautifulSoup
+import matplotlib.pyplot as plt
+
+# Tesla Stock Data
+tesla = yf.Ticker("TSLA")
+tesla_stock = tesla.history(period="max")
+tesla_stock.reset_index(inplace=True)
+
+# Save data
+tesla_stock.to_csv("../data/tesla_stock.csv", index=False)
+
+# Revenue Scraping Example
+url = "https://www.macrotrends.net/stocks/charts/TSLA/tesla/revenue"
+html_data = requests.get(url).text
+soup = BeautifulSoup(html_data, "html.parser")
+
+tables = soup.find_all("table")
+revenue_table = tables[1]
+
+tesla_revenue = pd.read_html(str(revenue_table))[0]
+tesla_revenue.columns = ["Date", "Revenue"]
+tesla_revenue["Revenue"] = tesla_revenue["Revenue"].str.replace("$","").str.replace(",","")
+
+# Plot
+plt.figure(figsize=(10,5))
+plt.plot(tesla_stock["Date"], tesla_stock["Close"])
+plt.title("Tesla Stock Price Over Time")
+plt.xlabel("Date")
+plt.ylabel("Close Price")
+plt.show()
