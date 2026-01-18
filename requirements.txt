@@ -1,0 +1,9 @@
+```txt
+pandas
+numpy
+yfinance
+beautifulsoup4
+requests
+matplotlib
+plotly
+jupyter
