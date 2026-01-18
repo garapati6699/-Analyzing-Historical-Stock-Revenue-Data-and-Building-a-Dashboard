@@ -1,0 +1,20 @@
+Analyzing-Historical-Stock-Revenue-Data-and-Building-a-Dashboard/
+│
+├── data/
+│   ├── tesla_stock.csv
+│   ├── gamestop_stock.csv
+│
+├── notebooks/
+│   └── stock_revenue_analysis.ipynb
+│
+├── dashboard/
+│   └── stock_dashboard.pbix   (or tableau_dashboard.twbx)
+│
+├── screenshots/
+│   └── dashboard_preview.png
+│
+├── README.md
+│
+├── requirements.txt
+│
+└── .gitignore
